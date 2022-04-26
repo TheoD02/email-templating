@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EmailTemplate{% endblock %}
+
+{% block body %}
+    <h1>Create new EmailTemplate</h1>
+
+    {{ include('email_template/_form.html.twig') }}
+    <div>
+        <h2>Fields</h2>
+        <ul>
+            {% for fieldKey, field in fields %}
+                {% if field is iterable %}
+                    <li>[{{ fieldKey }}]{{ field|join(', ') }}</li>
+                {% else %}
+                    <li>{{ field }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {{ vars }}
+    </div>
+    <a href="{{ path('app_email_template_index') }}">back to list</a>
+{% endblock %}

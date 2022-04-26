@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EmailTemplate index{% endblock %}
+
+{% block body %}
+    <h1>EmailTemplate index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Content</th>
+                <th>AvailableFields</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for email_template in email_templates %}
+            <tr>
+                <td>{{ email_template.id }}</td>
+                <td>{{ email_template.content }}</td>
+                <td>{{ email_template.availableFields ? email_template.availableFields|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_email_template_show', {'id': email_template.id}) }}">show</a>
+                    <a href="{{ path('app_email_template_edit', {'id': email_template.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_email_template_new') }}">Create new</a>
+{% endblock %}
